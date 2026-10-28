@@ -136,6 +136,23 @@
     font-size: 15px; text-align: left;
   }
 </style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1065101206279687');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1065101206279687&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
 
@@ -226,6 +243,11 @@
 
 <script>
   // Coloque aqui o link do WhatsApp quando estiver pronto, ex.: "https://wa.me/5595XXXXXXXXX"
+  function rastrear(evento, personalizado) {
+    if (typeof fbq !== "function") return;
+    if (personalizado) { fbq("trackCustom", evento); } else { fbq("track", evento); }
+  }
+
   var WEBHOOK_NOVO_LEAD = "https://n8n.iaatende.click/webhook/novo-lead-quiz";
   var LINK_WHATSAPP = "https://wa.me/5521965944207?text=Oi%2C%20Marcos%20Henrique!%20Acabei%20de%20preencher%20o%20formul%C3%A1rio%20para%20agendarmos%20uma%20reuni%C3%A3o...";
 
@@ -234,7 +256,7 @@
     { id: "instagram", tipo: "texto", pergunta: "Qual é o seu perfil do Instagram?", ajuda: "Pode ser só o @ do seu perfil.", input: "text", placeholder: "@seuperfil", obrigatorio: true },
     { id: "whatsapp", tipo: "texto", pergunta: "Qual é o seu WhatsApp, com DDD?", input: "tel", placeholder: "(00) 00000-0000", obrigatorio: true },
     { id: "captacao", tipo: "opcoes", pergunta: "Quantos novos pacientes você capta hoje?", opcoes: ["Nenhum", "Até 5", "De 6 a 15", "Mais de 15"] },
-    { id: "desejo", tipo: "opcoes", pergunta: "Quantos você gostaria de captar hoje?", opcoes: ["De 6 a 10", "De 11 a 20", "De 21 a 30", "Mais de 30"] },
+    { id: "desejo", tipo: "opcoes", pergunta: "Quantos novos pacientes você gostaria de captar?", opcoes: ["De 1 a 5", "De 6 a 10", "De 11 a 20", "De 21 a 30", "Mais de 30"] },
     { id: "faturamento", tipo: "opcoes", pergunta: "Qual é o faturamento atual do seu consultório?", opcoes: ["Zero", "Até R$ 5 mil por mês", "De R$ 5 mil a R$ 15 mil por mês", "Acima de R$ 15 mil por mês"] },
     { id: "experiencia", tipo: "opcoes", pergunta: "Você já investiu em tráfego pago antes?", opcoes: ["Não", "Sim, sem resultado", "Sim, com algum resultado"] },
     { id: "transicao", tipo: "transicao" },
@@ -314,6 +336,7 @@
           return;
         }
         respostas[etapa.id] = valor;
+        if (etapa.id === "nome") rastrear("FormularioIniciado", true);
         avancar();
       });
       var campoValor = document.getElementById("campo-valor");
@@ -364,9 +387,12 @@
             escapar(respostas.dia || "") + ', ' + escapar((respostas.horario || "").toLowerCase()) +
           '</div>' +
           '<p>Para confirmar o horário, fale com a gente no WhatsApp.</p>' +
-          '<a class="btn" href="' + LINK_WHATSAPP + '" target="_blank" rel="noopener">Confirmar pelo WhatsApp</a>' +
+          '<a class="btn" id="btn-whatsapp" href="' + LINK_WHATSAPP + '" target="_blank" rel="noopener">Confirmar pelo WhatsApp</a>' +
         '</div>';
       barra.style.width = "100%";
+      document.getElementById("btn-whatsapp").addEventListener("click", function () {
+        rastrear("Lead");
+      });
       fetch(WEBHOOK_NOVO_LEAD, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
