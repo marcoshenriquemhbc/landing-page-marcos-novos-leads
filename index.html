@@ -85,14 +85,15 @@
 
   /* ===== Quiz (pop-up) ===== */
   .overlay {
-    position: fixed; inset: 0; background: rgba(0,0,0,.82);
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,.82);
     display: none; align-items: center; justify-content: center;
     padding: 16px; z-index: 100;
   }
   .overlay.aberto { display: flex; }
   .modal {
     background: var(--painel); border: 1px solid var(--borda); border-radius: 10px;
-    width: 100%; max-width: 480px; max-height: 92vh; overflow-y: auto;
+    width: 100%; max-width: 480px; max-height: 100%; overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     padding: 26px 24px 28px; position: relative;
   }
   .fechar {
@@ -142,7 +143,7 @@
   <div class="container">
     <p class="eyebrow">Captação de pacientes</p>
     <h1>Tráfego pago e funis de social selling para nutricionista <span class="destaque">sem depender de indicação</span></h1>
-    <p class="lead">Em uma análise online de 30 minutos, mapeamos como os pacientes chegam ao seu consultório hoje e mostramos caminhos reais para captar com tráfego pago.</p>
+    <p class="lead">Em uma análise online de 30 minutos, mapeamos como os pacientes chegam ao seu consultório hoje e mostramos as estratégias mais eficazes para captar novos pacientes com tráfego pago e se tornar referência na sua cidade.</p>
     <button class="btn js-abrir-quiz" type="button">Agendar reunião de 30 minutos</button>
     <p class="micro">Sem compromisso de contratação.</p>
   </div>
@@ -382,10 +383,34 @@
     if (botaoVoltarEl) botaoVoltarEl.addEventListener("click", voltar);
   }
 
+  // Ajusta o pop-up à área visível da tela (o teclado do celular reduz essa área)
+  function ajustarAreaVisivel() {
+    var vv = window.visualViewport;
+    overlay.style.height = (vv ? vv.height : window.innerHeight) + "px";
+    overlay.style.top = (vv ? vv.offsetTop : 0) + "px";
+  }
+
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener("resize", ajustarAreaVisivel);
+    window.visualViewport.addEventListener("scroll", ajustarAreaVisivel);
+  }
+
+  // Quando um campo ganha foco, rola o formulário para o botão ficar visível acima do teclado
+  overlay.addEventListener("focusin", function (ev) {
+    if (ev.target.tagName === "INPUT") {
+      setTimeout(function () {
+        var botao = document.querySelector("#form-etapa .btn");
+        if (botao) botao.scrollIntoView({ block: "end", behavior: "smooth" });
+        ajustarAreaVisivel();
+      }, 350);
+    }
+  });
+
   function abrir() {
     atual = 0;
     respostas = {};
     overlay.classList.add("aberto");
+    ajustarAreaVisivel();
     renderizar();
   }
 
