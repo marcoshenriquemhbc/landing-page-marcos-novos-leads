@@ -226,6 +226,7 @@
 
 <script>
   // Coloque aqui o link do WhatsApp quando estiver pronto, ex.: "https://wa.me/5595XXXXXXXXX"
+  var WEBHOOK_NOVO_LEAD = "https://n8n.iaatende.click/webhook/novo-lead-quiz";
   var LINK_WHATSAPP = "https://wa.me/5521965944207?text=Oi%2C%20Marcos%20Henrique!%20Acabei%20de%20preencher%20o%20formul%C3%A1rio%20para%20agendarmos%20uma%20reuni%C3%A3o...";
 
   var etapas = [
@@ -366,7 +367,11 @@
           '<a class="btn" href="' + LINK_WHATSAPP + '" target="_blank" rel="noopener">Confirmar pelo WhatsApp</a>' +
         '</div>';
       barra.style.width = "100%";
-      // Quando quiser enviar as respostas, use o objeto "respostas" aqui (ex.: fetch para o webhook do n8n).
+      fetch(WEBHOOK_NOVO_LEAD, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(respostas)
+      }).catch(function () { /* falha de rede não bloqueia a experiência da pessoa */ });
     }
 
     else if (etapa.tipo === "desqualificado") {
