@@ -225,19 +225,21 @@
 
 <script>
   // Coloque aqui o link do WhatsApp quando estiver pronto, ex.: "https://wa.me/5595XXXXXXXXX"
-  var LINK_WHATSAPP = "#";
+  var LINK_WHATSAPP = "https://wa.me/5521965944207?text=Oi%2C%20Marcos%20Henrique!%20Acabei%20de%20preencher%20o%20formul%C3%A1rio%20para%20agendarmos%20uma%20reuni%C3%A3o...";
 
   var etapas = [
     { id: "nome", tipo: "texto", pergunta: "Qual é o seu nome completo?", input: "text", placeholder: "Nome e sobrenome", obrigatorio: true },
     { id: "instagram", tipo: "texto", pergunta: "Qual é o seu perfil do Instagram?", ajuda: "Pode ser só o @ do seu perfil.", input: "text", placeholder: "@seuperfil", obrigatorio: true },
     { id: "whatsapp", tipo: "texto", pergunta: "Qual é o seu WhatsApp, com DDD?", input: "tel", placeholder: "(00) 00000-0000", obrigatorio: true },
-    { id: "captacao", tipo: "opcoes", pergunta: "Quantos pacientes novos você capta por mês hoje?", opcoes: ["Até 5", "De 6 a 15", "Mais de 15"] },
-    { id: "faturamento", tipo: "opcoes", pergunta: "Qual é o faturamento atual do seu consultório?", opcoes: ["Até R$ 5 mil por mês", "De R$ 5 mil a R$ 15 mil por mês", "Acima de R$ 15 mil por mês"] },
+    { id: "captacao", tipo: "opcoes", pergunta: "Quantos novos pacientes você capta hoje?", opcoes: ["Nenhum", "Até 5", "De 6 a 15", "Mais de 15"] },
+    { id: "desejo", tipo: "opcoes", pergunta: "Quantos você gostaria de captar hoje?", opcoes: ["De 6 a 10", "De 11 a 20", "De 21 a 30", "Mais de 30"] },
+    { id: "faturamento", tipo: "opcoes", pergunta: "Qual é o faturamento atual do seu consultório?", opcoes: ["Zero", "Até R$ 5 mil por mês", "De R$ 5 mil a R$ 15 mil por mês", "Acima de R$ 15 mil por mês"] },
     { id: "experiencia", tipo: "opcoes", pergunta: "Você já investiu em tráfego pago antes?", opcoes: ["Não", "Sim, sem resultado", "Sim, com algum resultado"] },
     { id: "transicao", tipo: "transicao" },
     { id: "dia", tipo: "opcoes", pergunta: "Qual é o melhor dia para a sua análise?", opcoes: ["Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira"] },
     { id: "horario", tipo: "opcoes", pergunta: "Qual é o melhor horário?", opcoes: ["Manhã", "Tarde", "Noite"] },
-    { id: "final", tipo: "final" }
+    { id: "final", tipo: "final" },
+    { id: "desqualificado", tipo: "desqualificado" }
   ];
 
   var respostas = {};
@@ -288,9 +290,7 @@
     atualizarBarra();
 
     if (etapa.tipo === "texto") {
-      var numero = etapas.slice(0, atual).filter(function (e) { return e.tipo !== "transicao"; }).length + 1;
       conteudo.innerHTML =
-        '<p class="contador">Pergunta ' + numero + ' de ' + perguntasTotais() + '</p>' +
         '<h2 class="pergunta" id="quiz-titulo">' + escapar(etapa.pergunta) + '</h2>' +
         (etapa.ajuda ? '<p class="ajuda">' + escapar(etapa.ajuda) + '</p>' : '') +
         '<form id="form-etapa" novalidate>' +
@@ -319,19 +319,23 @@
     }
 
     else if (etapa.tipo === "opcoes") {
-      var numeroOpcao = etapas.slice(0, atual).filter(function (e) { return e.tipo !== "transicao"; }).length + 1;
       var botoes = etapa.opcoes.map(function (op) {
         return '<button class="opcao" type="button" data-valor="' + escapar(op) + '">' + escapar(op) + '</button>';
       }).join("");
       conteudo.innerHTML =
-        '<p class="contador">Pergunta ' + numeroOpcao + ' de ' + perguntasTotais() + '</p>' +
         '<h2 class="pergunta" id="quiz-titulo">' + escapar(etapa.pergunta) + '</h2>' +
         '<div class="opcoes">' + botoes + '</div>' +
         '<div class="acoes">' + botaoVoltar() + '</div>';
 
       Array.prototype.forEach.call(conteudo.querySelectorAll(".opcao"), function (btn) {
         btn.addEventListener("click", function () {
-          respostas[etapa.id] = btn.getAttribute("data-valor");
+          var valor = btn.getAttribute("data-valor");
+          respostas[etapa.id] = valor;
+          if (etapa.id === "faturamento" && valor === "Zero") {
+            atual = etapas.findIndex(function (e) { return e.id === "desqualificado"; });
+            renderizar();
+            return;
+          }
           avancar();
         });
       });
@@ -341,7 +345,7 @@
       conteudo.innerHTML =
         '<div class="transicao">' +
           '<p class="contador">Quase lá</p>' +
-          '<h2 class="pergunta" id="quiz-titulo">Perfeito, seu perfil combina com a análise</h2>' +
+          '<h2 class="pergunta" id="quiz-titulo">Perfeito, o seu perfil combina com os nutricionistas que conseguimos ajudar</h2>' +
           '<p>Agora escolha o melhor dia e horário para a sua reunião de 30 minutos.</p>' +
           '<div class="acoes">' + botaoVoltar() + '<button class="btn" type="button" id="continuar-horario">Continuar para o horário</button></div>' +
         '</div>';
@@ -362,6 +366,16 @@
         '</div>';
       barra.style.width = "100%";
       // Quando quiser enviar as respostas, use o objeto "respostas" aqui (ex.: fetch para o webhook do n8n).
+    }
+
+    else if (etapa.tipo === "desqualificado") {
+      conteudo.innerHTML =
+        '<div class="final">' +
+          '<h2 class="pergunta" id="quiz-titulo">Infelizmente, não conseguimos ajudar agora</h2>' +
+          '<p>Ainda não conseguimos ajudar nutricionistas que estão começando agora. Agradecemos o seu tempo e esperamos conversar com você no futuro.</p>' +
+          '<button class="btn" type="button" id="fechar-aviso">Fechar</button>' +
+        '</div>';
+      document.getElementById("fechar-aviso").addEventListener("click", fechar);
     }
 
     var botaoVoltarEl = document.getElementById("voltar");
