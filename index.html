@@ -2,287 +2,391 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Dra. Larissa Lodêtti | Aula ao Vivo — Método START 3R</title>
-<meta name="description" content="Aula ao vivo gratuita com a nutricionista Dra. Larissa Lodêtti sobre disbiose, SIBO e intestino permeável. Vagas limitadas — garanta a sua.">
-<meta name="robots" content="index, follow">
-<meta name="theme-color" content="#0e1c26">
-<link rel="canonical" href="{{URL_CANONICA}}">
-
-<!-- Open Graph / compartilhamento -->
-<meta property="og:type" content="website">
-<meta property="og:locale" content="pt_BR">
-<meta property="og:title" content="Dra. Larissa Lodêtti | Aula ao Vivo — Método START 3R">
-<meta property="og:description" content="Aula ao vivo gratuita sobre disbiose, SIBO e intestino permeável com a Dra. Larissa Lodêtti. Vagas limitadas.">
-<meta property="og:image" content="{{URL_IMAGEM_OG}}">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Dra. Larissa Lodêtti | Aula ao Vivo — Método START 3R">
-<meta name="twitter:description" content="Aula ao vivo gratuita sobre disbiose, SIBO e intestino permeável com a Dra. Larissa Lodêtti. Vagas limitadas.">
-
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1388181216466429');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1388181216466429&ev=PageView&noscript=1"
-alt=""
-/></noscript>
-<!-- End Meta Pixel Code -->
-
-<script>
-function getCookie(name) {
-  var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-  return match ? decodeURIComponent(match[2]) : null;
-}
-function setCookie(name, value, days) {
-  var expires = "";
-  if (days) {
-    var date = new Date();
-    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-    expires = "; expires=" + date.toUTCString();
-  }
-  document.cookie = name + "=" + encodeURIComponent(value) + expires + "; path=/; SameSite=Lax";
-}
-function ensureFbc() {
-  var existingFbc = getCookie('_fbc');
-  if (existingFbc) return existingFbc;
-  var params = new URLSearchParams(window.location.search);
-  var fbclid = params.get('fbclid');
-  if (fbclid) {
-    var fbc = 'fb.1.' + Date.now() + '.' + fbclid;
-    setCookie('_fbc', fbc, 90);
-    return fbc;
-  }
-  return null;
-}
-var capturedFbc = ensureFbc();
-</script>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;600;700;900&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;600;700;900&display=swap" media="print" onload="this.media='all';this.onload=null;">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;600;700;900&display=swap"></noscript>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Análise de captação para o seu consultório</title>
 <style>
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-  :root{
-    --navy:#0e1c26;
-    --navy2:#152b38;
-    --orange:#ee7b39;
-    --orange2:#8f3e15;
-    --orange-btn:#a84a19;
-    --whatsapp:#0d6b35;
-    --whatsapp-hover:#0a5429;
-    --purple:#b98eff;
-    --cream:#f6f2ea;
-    --white:#ffffff;
-    --ink:#1c1c1c;
-    --muted:rgba(255,255,255,.9);
-    --muted-ink:#5a5a52;
+  :root {
+    --verde: #8BE36B;
+    --preto: #0b0f0c;
+    --verde-escuro: #14301c;
+    --painel: #111a14;
+    --campo: #0f1611;
+    --borda: #2c3d31;
+    --branco: #ffffff;
+    --cinza: #b9c2bb;
+    --titulo: "Arial Black", "Helvetica Neue", Arial, sans-serif;
+    --corpo: Arial, "Helvetica Neue", Helvetica, sans-serif;
   }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--corpo);
+    background: var(--preto);
+    color: var(--branco);
+    line-height: 1.55;
+  }
+  .container { max-width: 720px; margin: 0 auto; padding: 0 22px; }
+  section { padding: 56px 0; border-bottom: 1px solid #1d2a21; }
 
-  html,body{
-    height:100%;
-    overflow:hidden;
-    overscroll-behavior:none;
-    position:fixed;
-    inset:0;
-    width:100%;
+  .eyebrow {
+    font-size: 13px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--cinza); margin-bottom: 18px;
   }
-  body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--navy);touch-action:pan-y;}
-  h1,h2,h3,h4{font-family:'Fraunces',serif;font-weight:600;}
-  .container{max-width:1080px;margin:0 auto;padding:0 24px;height:100%;display:flex;flex-direction:column;}
-  img{max-width:100%;display:block;}
-  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+  h1, h2, h3 { font-family: var(--titulo); text-transform: uppercase; line-height: 1.1; }
+  h1 { font-size: clamp(30px, 6.5vw, 48px); margin-bottom: 20px; }
+  h2 { font-size: clamp(22px, 4.5vw, 30px); margin-bottom: 18px; }
+  h3 { font-size: 16px; margin-bottom: 4px; }
+  .destaque { background: var(--verde); color: var(--preto); padding: 0 8px; }
+  p.lead { font-size: 18px; color: #e6ece7; margin-bottom: 28px; }
+  .verde { color: var(--verde); font-weight: bold; }
 
-  .btn{
-    display:inline-flex;align-items:center;justify-content:center;gap:7px;
-    background:var(--whatsapp);color:#fff;font-weight:800;font-size:13.5px;
-    text-decoration:none;border-radius:40px;padding:15px 18px;
-    transition:transform .15s,background .15s;border:none;cursor:pointer;
-    box-shadow:0 8px 24px rgba(13,107,53,.35);white-space:nowrap;
+  .btn {
+    display: inline-block; background: var(--verde); color: var(--preto);
+    font-family: var(--titulo); text-transform: uppercase; letter-spacing: 1px;
+    padding: 18px 28px; border-radius: 6px; text-decoration: none;
+    font-size: 15px; border: none; cursor: pointer; width: 100%; text-align: center;
   }
-  .btn:hover,.btn:focus-visible{background:var(--whatsapp-hover);transform:translateY(-2px);}
-  .btn:focus-visible{outline:2px solid #fff;outline-offset:3px;}
-  .btn-full{width:100%;}
+  .btn:hover { filter: brightness(1.08); }
+  .btn:disabled { opacity: .4; cursor: not-allowed; }
+  .micro { font-size: 13px; color: var(--cinza); margin-top: 12px; text-align: center; }
 
-  .hero{
-    position:relative;
-    height:100vh;
-    height:100svh;
-    height:100dvh;
-    background:radial-gradient(circle at 78% 24%, #1c3644 0%, var(--navy) 60%);
-    display:flex;
-    flex-direction:column;
-    overflow:hidden;
-    padding-top:max(16px, env(safe-area-inset-top));
-    padding-bottom:max(14px, env(safe-area-inset-bottom));
+  .perfil { list-style: none; display: grid; gap: 12px; margin-bottom: 8px; }
+  .perfil li {
+    background: var(--verde-escuro); border-left: 4px solid var(--verde);
+    padding: 16px 18px; border-radius: 4px; font-size: 16px;
   }
-  .hero-inner{
-    flex:1;
-    display:flex;
-    flex-direction:column;
-    align-items:flex-start;
-    justify-content:flex-start;
-    gap:18px;
-  }
-  .hero-top{
-    display:flex;
-    flex-direction:column;
-    align-items:flex-start;
-  }
-  .hero-badge{
-    display:inline-flex;align-items:center;gap:10px;
-    background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);
-    border-radius:40px;padding:8px 16px 8px 8px;margin-bottom:16px;
-  }
-  .hero-badge img{width:34px;height:34px;border-radius:50%;object-fit:cover;background:#2b4452;}
-  .hero-badge span{font-size:12.5px;font-weight:700;color:#fff;letter-spacing:.02em;}
-  .hero-badge span em{display:block;font-style:normal;font-weight:400;color:#fff;font-size:11px;text-transform:uppercase;letter-spacing:.08em;margin-top:1px;}
+  .aviso { font-size: 14px; color: var(--cinza); margin-top: 14px; }
 
-  .hero h1{
-    font-family:'Inter',sans-serif;
-    font-size:clamp(15px,2.5vw,16px);
-    line-height:1.5;
-    color:#fff;
-    font-weight:600;
-    letter-spacing:-.005em;
-    margin-bottom:10px;
-    max-width:520px;
-    text-wrap:balance;
-    background:rgba(185,142,255,.12);
-    border:1px solid rgba(185,142,255,.4);
-    border-radius:14px;
-    padding:12px 14px;
+  .passos { display: grid; gap: 16px; }
+  .passo {
+    display: flex; gap: 16px; align-items: flex-start;
+    background: var(--painel); padding: 18px; border-radius: 6px;
   }
-  .hero-lead{font-size:13.5px;font-weight:900;color:var(--orange);max-width:560px;margin-bottom:12px;line-height:1.5;}
-  .hero-sub{font-size:14.5px;line-height:1.6;color:#fff;max-width:560px;margin-bottom:10px;}
-  .hero-proof{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;font-size:12.5px;color:#fff;text-align:center;margin:0;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.18);}
-  .hero-proof .stars{color:var(--orange);letter-spacing:2px;font-size:13px;}
-  .hero-proof strong{color:#fff;}
-  .hero-cta-box{
-    background:rgba(185,142,255,.12);
-    border:1px solid rgba(185,142,255,.4);
-    border-radius:16px;
-    padding:16px 18px 20px;
-    width:100%;
-    max-width:420px;
-    display:flex;
-    flex-direction:column;
-    gap:14px;
+  .passo .num {
+    flex-shrink: 0; width: 38px; height: 38px; border-radius: 50%;
+    background: var(--verde); color: var(--preto); font-family: var(--titulo);
+    display: flex; align-items: center; justify-content: center;
   }
-  .hero-cta-wrap{width:100%;display:flex;flex-direction:column;align-items:center;}
-  .hero-urgency{
-    display:flex;align-items:center;justify-content:center;gap:6px;
-    font-size:11.5px;font-weight:700;color:#ffb199;margin-bottom:12px;
-    text-align:center;
-  }
-  .hero-urgency::before{content:"●";color:#ff5c4d;font-size:9px;animation:pulse 1.4s infinite;}
-  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+  .passo p { font-size: 15px; color: var(--cinza); }
 
-  .foot-note{
-    position:absolute;bottom:12px;left:0;right:0;text-align:center;
-    font-size:10.5px;color:rgba(255,255,255,.62);padding:0 20px;
+  .numeros { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 20px 0; }
+  .numeros div { background: var(--verde-escuro); padding: 18px 10px; text-align: center; border-radius: 6px; }
+  .numeros strong { display: block; font-family: var(--titulo); font-size: 24px; color: var(--verde); }
+  .numeros span { font-size: 13px; color: var(--cinza); }
+  blockquote {
+    border-left: 4px solid var(--verde); padding: 14px 18px;
+    background: var(--painel); font-size: 16px; color: #e6ece7;
   }
+  blockquote cite { display: block; margin-top: 8px; font-size: 13px; color: var(--cinza); font-style: normal; }
 
-  @media(max-width:480px){
-    .hero-badge img{width:30px;height:30px;}
-    .hero h1{font-size:15px;}
-    .btn{font-size:12.5px;padding:14px 12px;}
+  footer { text-align: center; font-size: 13px; color: var(--cinza); padding: 32px 0 48px; }
+
+  /* ===== Quiz (pop-up) ===== */
+  .overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,.82);
+    display: none; align-items: center; justify-content: center;
+    padding: 16px; z-index: 100;
   }
-  @media(max-height:800px){
-    .hero-badge{margin-bottom:10px;}
-    .hero h1{margin-bottom:10px;}
-    .hero-lead{margin-bottom:8px;}
-    .hero-sub{margin-bottom:6px;}
-    .hero-inner{gap:10px;}
+  .overlay.aberto { display: flex; }
+  .modal {
+    background: var(--painel); border: 1px solid var(--borda); border-radius: 10px;
+    width: 100%; max-width: 480px; max-height: 92vh; overflow-y: auto;
+    padding: 26px 24px 28px; position: relative;
   }
-  @media(max-height:580px){
-    .hero-proof{display:none;}
+  .fechar {
+    position: absolute; top: 10px; right: 12px; background: none; border: none;
+    color: var(--cinza); font-size: 26px; cursor: pointer; line-height: 1;
+  }
+  .progresso { height: 6px; background: #1d2a21; border-radius: 3px; margin-bottom: 22px; overflow: hidden; }
+  .progresso div { height: 100%; width: 0%; background: var(--verde); transition: width .3s; }
+  .contador { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--cinza); margin-bottom: 10px; }
+  .pergunta { font-family: var(--titulo); font-size: 19px; text-transform: uppercase; line-height: 1.2; margin-bottom: 18px; }
+  .ajuda { font-size: 13px; color: var(--cinza); margin-top: -10px; margin-bottom: 14px; }
+
+  .campo {
+    width: 100%; padding: 14px; border-radius: 6px; border: 1px solid var(--borda);
+    background: var(--campo); color: var(--branco); font-size: 16px; font-family: var(--corpo);
+  }
+  .campo:focus { outline: 2px solid var(--verde); border-color: var(--verde); }
+  .erro { color: #ff8a8a; font-size: 13px; min-height: 18px; margin: 6px 0 10px; }
+
+  .opcoes { display: grid; gap: 10px; }
+  .opcao {
+    background: var(--campo); border: 1px solid var(--borda); color: var(--branco);
+    padding: 15px 16px; border-radius: 6px; font-size: 16px; text-align: left;
+    cursor: pointer; font-family: var(--corpo);
+  }
+  .opcao:hover, .opcao:focus { border-color: var(--verde); outline: none; background: var(--verde-escuro); }
+
+  .acoes { display: flex; gap: 10px; margin-top: 18px; }
+  .acoes .btn { width: auto; flex: 1; }
+  .btn-secundario {
+    background: none; border: 1px solid var(--borda); color: var(--cinza);
+    padding: 18px 16px; border-radius: 6px; cursor: pointer; font-family: var(--corpo); font-size: 14px;
+  }
+  .transicao { text-align: center; padding: 10px 0; }
+  .transicao p { color: var(--cinza); margin-bottom: 22px; font-size: 15px; }
+  .final { text-align: center; padding: 10px 0; }
+  .final p { color: var(--cinza); margin-bottom: 20px; font-size: 15px; }
+  .resumo {
+    background: var(--verde-escuro); border-radius: 6px; padding: 14px; margin-bottom: 20px;
+    font-size: 15px; text-align: left;
   }
 </style>
 </head>
 <body>
 
-<section class="hero">
+<section>
   <div class="container">
-    <div class="hero-inner">
-      <div class="hero-top">
-        <div class="hero-badge">
-          <img src="https://lp.iaatende.click/wp-content/uploads/2026/06/b5196641520c4b2d98f52baf4db9f22a.png" alt="Dra. Larissa Lodêtti" width="34" height="34" loading="eager" fetchpriority="high" decoding="async">
-          <span>Dra. Larissa Lodêtti<em>Nutricionista · Membro IBNF</em></span>
+    <p class="eyebrow">Captação de pacientes</p>
+    <h1>Tráfego pago para nutricionista <span class="destaque">sem depender de indicação</span></h1>
+    <p class="lead">Em uma análise online de 30 minutos, mapeamos como os pacientes chegam ao seu consultório hoje e mostramos caminhos reais para captar com tráfego pago.</p>
+    <button class="btn js-abrir-quiz" type="button">Agendar análise de 30 minutos</button>
+    <p class="micro">Sem compromisso de contratação.</p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <p class="eyebrow">Para quem é</p>
+    <h2>Esta análise é para você se...</h2>
+    <ul class="perfil">
+      <li>Você já atende pacientes e tem consultório funcionando.</li>
+      <li>Sua agenda ainda depende de indicação e de sorte.</li>
+      <li>Você quer transformar contatos do WhatsApp em consultas agendadas.</li>
+      <li>Está pronta para investir em aquisição de pacientes com processo próprio.</li>
+    </ul>
+    <p class="aviso">Se você busca resultado sem executar ou quer apenas aprender sobre marketing, esta análise não é para você agora.</p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <p class="eyebrow">O que acontece</p>
+    <h2>Uma reunião de 30 minutos, sem enrolação</h2>
+    <div class="passos">
+      <div class="passo">
+        <div class="num">1</div>
+        <div>
+          <h3>Analisamos sua captação atual</h3>
+          <p>Como os pacientes chegam hoje e de onde vem a maior parte das consultas.</p>
         </div>
-
-        <h1>Na próxima quarta-feira, às 19 horas, em uma aula ao vivo, você vai entender a verdadeira raiz por trás da disbiose, do SIBO e do intestino permeável.</h1>
-
-        <p class="hero-lead">Depois de mais de 11.000 atendimentos, a Dra. Larissa identificou o padrão por trás da barriga estufada, do intestino travado e do metabolismo lento — mesmo em quem já tentou de tudo.</p>
-
-        <p class="hero-sub"><strong>Se você foi diagnosticada com disbiose, SIBO ou intestino permeável</strong>, nesta aula você vai entender por que toda dieta genérica trata o sintoma e ignora a raiz.</p>
-
-        <p class="hero-sub">Você vai conhecer <strong>os 3 passos do Método START 3R que ela usa em consultório</strong>: reduzir o que inflama, reparar a parede intestinal e repovoar as bactérias certas — sem cortar tudo o que você mais gosta de comer.</p>
       </div>
-
-      <div class="hero-cta-box">
-        <div class="hero-proof">
-          <span class="stars" aria-hidden="true">★★★★★</span>
-          <span class="sr-only">Avaliação 5 de 5 estrelas.</span>
-          <span><strong>+1.000 pacientes</strong> atendidos</span>
+      <div class="passo">
+        <div class="num">2</div>
+        <div>
+          <h3>Identificamos os gargalos</h3>
+          <p>Onde o WhatsApp perde contatos e em qual etapa o interesse esfria.</p>
         </div>
-
-        <div class="hero-cta-wrap">
-          <span class="hero-urgency">Vagas limitadas pelo Google Meet</span>
-          <a href="https://chat.whatsapp.com/FoXpjUqNbW930Cts99TmGr" id="ctaWhatsApp" target="_blank" rel="noopener noreferrer" class="btn btn-full" onclick="handleCtaClick(event)">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="18" height="18" fill="#fff" style="flex-shrink:0;" aria-hidden="true">
-              <path d="M24 4C12.95 4 4 12.95 4 24c0 3.55.93 6.88 2.56 9.77L4 44l10.56-2.52A19.86 19.86 0 0 0 24 44c11.05 0 20-8.95 20-20S35.05 4 24 4zm0 36c-3.14 0-6.1-.82-8.66-2.26l-.62-.37-6.27 1.5 1.53-6.1-.4-.64A15.93 15.93 0 0 1 8 24c0-8.82 7.18-16 16-16s16 7.18 16 16-7.18 16-16 16zm8.77-11.76c-.48-.24-2.84-1.4-3.28-1.56-.44-.16-.76-.24-1.08.24-.32.48-1.24 1.56-1.52 1.88-.28.32-.56.36-1.04.12-.48-.24-2.03-.75-3.87-2.39-1.43-1.28-2.4-2.85-2.68-3.33-.28-.48-.03-.74.21-.98.22-.22.48-.56.72-.84.24-.28.32-.48.48-.8.16-.32.08-.6-.04-.84-.12-.24-1.08-2.6-1.48-3.56-.38-.92-.78-.8-1.08-.82-.28-.01-.6-.01-.92-.01-.32 0-.84.12-1.28.6-.44.48-1.68 1.64-1.68 4s1.72 4.64 1.96 4.96c.24.32 3.38 5.16 8.2 7.24 1.15.5 2.04.8 2.74 1.02 1.15.36 2.2.31 3.02.19.92-.14 2.84-1.16 3.24-2.28.4-1.12.4-2.08.28-2.28-.12-.2-.44-.32-.92-.56z"/>
-            </svg>
-            Quero minha vaga na aula ao vivo →
-          </a>
+      </div>
+      <div class="passo">
+        <div class="num">3</div>
+        <div>
+          <h3>Mapeamos os caminhos possíveis</h3>
+          <p>Um direcionamento claro para captar pacientes qualificados, sem depender só de conteúdo.</p>
         </div>
       </div>
     </div>
   </div>
-  <div class="foot-note">© 2026 Dra. Larissa Lodêtti · Todos os direitos reservados</div>
 </section>
 
+<section>
+  <div class="container">
+    <p class="eyebrow">Experiência</p>
+    <h2>Mais de 10 anos com tráfego pago</h2>
+    <p class="lead">Trabalho com Meta Ads e Google Ads, funis e copy. Atendo nutricionistas que querem previsibilidade de pacientes, sem transformar o consultório em agência.</p>
+    <div class="numeros">
+      <div><strong>10+</strong><span>anos com tráfego</span></div>
+      <div><strong>[X]</strong><span>nutricionistas atendidas</span></div>
+      <div><strong>[X]</strong><span>consultas geradas</span></div>
+    </div>
+    <blockquote>
+      "[Depoimento de nutricionista atendida, com resultado concreto.]"
+      <cite>[Nome], nutricionista · [cidade]</cite>
+    </blockquote>
+    <div style="margin-top: 36px;">
+      <button class="btn js-abrir-quiz" type="button">Quero agendar minha análise</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>© Marcos Henrique · Tráfego pago para nutricionistas</p>
+  </div>
+</footer>
+
+<!-- ===== Pop-up em formato de quiz ===== -->
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="quiz-titulo">
+  <div class="modal">
+    <button class="fechar" type="button" id="fechar" aria-label="Fechar">&times;</button>
+    <div class="progresso"><div id="barra"></div></div>
+    <div id="quiz-conteudo"></div>
+  </div>
+</div>
+
 <script>
-var LINK_GRUPO_WHATSAPP = "https://chat.whatsapp.com/FoXpjUqNbW930Cts99TmGr";
-var N8N_WEBHOOK_URL = "https://n8n.iaatende.click/webhook/9fb446c9-8ca1-456f-b00d-635121b9634a";
+  // Coloque aqui o link do WhatsApp quando estiver pronto, ex.: "https://wa.me/5595XXXXXXXXX"
+  var LINK_WHATSAPP = "#";
 
-function handleCtaClick(e) {
-  var eventId = 'lead_' + Date.now() + '_' + Math.random().toString(36).substring(2, 9);
+  var etapas = [
+    { id: "nome", tipo: "texto", pergunta: "Qual é o seu nome completo?", input: "text", placeholder: "Nome e sobrenome", obrigatorio: true },
+    { id: "instagram", tipo: "texto", pergunta: "Qual é o seu perfil do Instagram?", ajuda: "Pode ser só o @ do seu perfil.", input: "text", placeholder: "@seuperfil", obrigatorio: true },
+    { id: "whatsapp", tipo: "texto", pergunta: "Qual é o seu WhatsApp, com DDD?", input: "tel", placeholder: "(00) 00000-0000", obrigatorio: true },
+    { id: "captacao", tipo: "opcoes", pergunta: "Quantos pacientes novos você capta por mês hoje?", opcoes: ["Até 5", "De 6 a 15", "Mais de 15"] },
+    { id: "faturamento", tipo: "opcoes", pergunta: "Qual é o faturamento atual do seu consultório?", opcoes: ["Até R$ 5 mil por mês", "De R$ 5 mil a R$ 15 mil por mês", "Acima de R$ 15 mil por mês"] },
+    { id: "experiencia", tipo: "opcoes", pergunta: "Você já investiu em tráfego pago antes?", opcoes: ["Não", "Sim, sem resultado", "Sim, com algum resultado"] },
+    { id: "transicao", tipo: "transicao" },
+    { id: "dia", tipo: "opcoes", pergunta: "Qual é o melhor dia para a sua análise?", opcoes: ["Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira"] },
+    { id: "horario", tipo: "opcoes", pergunta: "Qual é o melhor horário?", opcoes: ["Manhã", "Tarde", "Noite"] },
+    { id: "final", tipo: "final" }
+  ];
 
-  // 1. Dispara o evento de Conversão (Lead) no Meta Pixel
-  if(typeof fbq !== 'undefined'){
-    fbq('track', 'Lead', {content_name: 'Entrar no Grupo - Webinario Dra Larissa'}, {eventID: eventId});
+  var respostas = {};
+  var atual = 0;
+
+  var overlay = document.getElementById("overlay");
+  var conteudo = document.getElementById("quiz-conteudo");
+  var barra = document.getElementById("barra");
+
+  function escapar(texto) {
+    var div = document.createElement("div");
+    div.textContent = texto;
+    return div.innerHTML;
   }
 
-  // 2. Dispara o evento para o Webhook do n8n (Conversion API / CAPI)
-  if(N8N_WEBHOOK_URL && N8N_WEBHOOK_URL.indexOf('http') === 0){
-    fetch(N8N_WEBHOOK_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        origem: 'direto_sem_quiz',
-        grupo_programa: 'SIM',
-        event_id: eventId,
-        event_source_url: window.location.href,
-        fbc: capturedFbc,
-        fbp: getCookie('_fbp'),
-        user_agent: navigator.userAgent
-      })
-    }).catch(function(){});
+  function perguntasTotais() {
+    return etapas.filter(function (e) { return e.tipo === "texto" || e.tipo === "opcoes"; }).length;
   }
-}
+
+  function atualizarBarra() {
+    var concluidas = 0;
+    for (var i = 0; i < atual; i++) {
+      if (etapas[i].tipo === "texto" || etapas[i].tipo === "opcoes") concluidas++;
+    }
+    barra.style.width = Math.round((concluidas / perguntasTotais()) * 100) + "%";
+  }
+
+  function avancar() {
+    atual++;
+    renderizar();
+  }
+
+  function voltar() {
+    if (atual > 0) {
+      atual--;
+      renderizar();
+    }
+  }
+
+  function botaoVoltar() {
+    return atual > 0 && etapas[atual].tipo !== "final"
+      ? '<button class="btn-secundario" type="button" id="voltar">Voltar</button>'
+      : "";
+  }
+
+  function renderizar() {
+    var etapa = etapas[atual];
+    atualizarBarra();
+
+    if (etapa.tipo === "texto") {
+      var numero = etapas.slice(0, atual).filter(function (e) { return e.tipo !== "transicao"; }).length + 1;
+      conteudo.innerHTML =
+        '<p class="contador">Pergunta ' + numero + ' de ' + perguntasTotais() + '</p>' +
+        '<h2 class="pergunta" id="quiz-titulo">' + escapar(etapa.pergunta) + '</h2>' +
+        (etapa.ajuda ? '<p class="ajuda">' + escapar(etapa.ajuda) + '</p>' : '') +
+        '<form id="form-etapa" novalidate>' +
+          '<input class="campo" id="campo-valor" type="' + etapa.input + '" placeholder="' + escapar(etapa.placeholder) + '" autocomplete="off">' +
+          '<p class="erro" id="erro"></p>' +
+          '<div class="acoes">' + botaoVoltar() + '<button class="btn" type="submit">Continuar</button></div>' +
+        '</form>';
+
+      document.getElementById("form-etapa").addEventListener("submit", function (ev) {
+        ev.preventDefault();
+        var valor = document.getElementById("campo-valor").value.trim();
+        var erro = document.getElementById("erro");
+        if (!valor) {
+          erro.textContent = "Preencha este campo para continuar.";
+          return;
+        }
+        if (etapa.id === "whatsapp" && valor.replace(/\D/g, "").length < 10) {
+          erro.textContent = "Informe o número com DDD.";
+          return;
+        }
+        respostas[etapa.id] = valor;
+        avancar();
+      });
+      var campoValor = document.getElementById("campo-valor");
+      campoValor.focus();
+    }
+
+    else if (etapa.tipo === "opcoes") {
+      var numeroOpcao = etapas.slice(0, atual).filter(function (e) { return e.tipo !== "transicao"; }).length + 1;
+      var botoes = etapa.opcoes.map(function (op) {
+        return '<button class="opcao" type="button" data-valor="' + escapar(op) + '">' + escapar(op) + '</button>';
+      }).join("");
+      conteudo.innerHTML =
+        '<p class="contador">Pergunta ' + numeroOpcao + ' de ' + perguntasTotais() + '</p>' +
+        '<h2 class="pergunta" id="quiz-titulo">' + escapar(etapa.pergunta) + '</h2>' +
+        '<div class="opcoes">' + botoes + '</div>' +
+        '<div class="acoes">' + botaoVoltar() + '</div>';
+
+      Array.prototype.forEach.call(conteudo.querySelectorAll(".opcao"), function (btn) {
+        btn.addEventListener("click", function () {
+          respostas[etapa.id] = btn.getAttribute("data-valor");
+          avancar();
+        });
+      });
+    }
+
+    else if (etapa.tipo === "transicao") {
+      conteudo.innerHTML =
+        '<div class="transicao">' +
+          '<p class="contador">Quase lá</p>' +
+          '<h2 class="pergunta" id="quiz-titulo">Perfeito, seu perfil combina com a análise</h2>' +
+          '<p>Agora escolha o melhor dia e horário para a sua reunião de 30 minutos.</p>' +
+          '<div class="acoes">' + botaoVoltar() + '<button class="btn" type="button" id="continuar-horario">Continuar para o horário</button></div>' +
+        '</div>';
+      document.getElementById("continuar-horario").addEventListener("click", avancar);
+    }
+
+    else if (etapa.tipo === "final") {
+      conteudo.innerHTML =
+        '<div class="final">' +
+          '<p class="contador">Tudo certo</p>' +
+          '<h2 class="pergunta" id="quiz-titulo">Suas respostas foram enviadas</h2>' +
+          '<div class="resumo">' +
+            '<strong class="verde">Preferência de agendamento:</strong><br>' +
+            escapar(respostas.dia || "") + ', ' + escapar((respostas.horario || "").toLowerCase()) +
+          '</div>' +
+          '<p>Para confirmar o horário, fale com a gente no WhatsApp.</p>' +
+          '<a class="btn" href="' + LINK_WHATSAPP + '" target="_blank" rel="noopener">Confirmar pelo WhatsApp</a>' +
+        '</div>';
+      barra.style.width = "100%";
+      // Quando quiser enviar as respostas, use o objeto "respostas" aqui (ex.: fetch para o webhook do n8n).
+    }
+
+    var botaoVoltarEl = document.getElementById("voltar");
+    if (botaoVoltarEl) botaoVoltarEl.addEventListener("click", voltar);
+  }
+
+  function abrir() {
+    atual = 0;
+    respostas = {};
+    overlay.classList.add("aberto");
+    renderizar();
+  }
+
+  function fechar() {
+    overlay.classList.remove("aberto");
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll(".js-abrir-quiz"), function (btn) {
+    btn.addEventListener("click", abrir);
+  });
+  document.getElementById("fechar").addEventListener("click", fechar);
+  overlay.addEventListener("click", function (ev) {
+    if (ev.target === overlay) fechar();
+  });
 </script>
 
 </body>
